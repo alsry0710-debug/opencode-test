@@ -1,6 +1,7 @@
+import os
 import pandas as pd
 
-DATA_PATH = "data/OB_GYN_DATA.csv"
+DATA_PATH = os.path.join(os.path.dirname(__file__), "data", "OB_GYN_DATA.csv")
 
 def load_patient(patient_id=None, index=0):
     df = pd.read_csv(DATA_PATH, encoding="utf-8-sig")
