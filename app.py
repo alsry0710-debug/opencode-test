@@ -1,3 +1,4 @@
+import os
 import streamlit as st
 import streamlit.components.v1 as components
 import pandas as pd
@@ -110,13 +111,13 @@ with st.sidebar:
     st.markdown("---")
     with st.container(border=True):
         st.markdown('<p style="font-size:13px;font-weight:600;color:#9d174d;margin:0 0 8px">📱 알려준닥 모바일 앱</p>', unsafe_allow_html=True)
-        st.image("data/3d2107aa-421f-4043-965d-4882758860f4.png", use_container_width=True)
+        st.image(os.path.join(os.path.dirname(__file__), "data", "3d2107aa-421f-4043-965d-4882758860f4.png"), use_container_width=True)
         st.markdown('<p style="font-size:11px;color:#be185d;text-align:center">퇴원 후 케어까지, 알려준닥 앱에서 한 번에.</p>', unsafe_allow_html=True)
         if st.button("📱 자세히 보기", key="banner_sidebar", use_container_width=True):
             st.session_state.page = "app_intro"
             st.rerun()
 
-    df_all = pd.read_csv("data/OB_GYN_DATA.csv", encoding="utf-8-sig")
+    df_all = pd.read_csv(os.path.join(os.path.dirname(__file__), "data", "OB_GYN_DATA.csv"), encoding="utf-8-sig")
     pid_list = df_all.index.tolist()
     pid_labels = [f"{r['환자ID']} - {r['진단명']}" for _, r in df_all.iterrows()]
     sel_idx = st.selectbox("환자", pid_list, index=st.session_state.selected_patient,
